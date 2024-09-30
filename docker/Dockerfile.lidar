@@ -11,6 +11,10 @@ RUN git clone https://github.com/MISTLab/Swarm-SLAM.git &&\
     vcs import src < cslam.repos
 
 RUN cd Swarm-SLAM &&\
+    cd src &&\
+    git clone https://github.com/lajoiepy/cslam_visualization.git
+
+RUN cd Swarm-SLAM &&\
     pip install -r requirements.txt
 
 RUN cd Swarm-SLAM &&\
@@ -33,6 +37,12 @@ RUN git clone https://github.com/MIT-SPARK/TEASER-plusplus.git &&\
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source Swarm-SLAM/install/setup.bash" >> ~/.bashrc
 
+RUN apt install vim -y
+RUN apt install gedit -y
+RUN apt install ros-humble-rviz2 -y
+RUN apt install ros-humble-rqt-graph -y
+RUN apt install ros-humble-rtabmap-ros -y
+
 ADD https://api.github.com/repos/lajoiepy/cslam/commits?per_page=1 head_cslam
 ADD https://api.github.com/repos/lajoiepy/cslam_interfaces/commits?per_page=1 head_cslam_interfaces
 ADD https://api.github.com/repos/lajoiepy/cslam_experiments/commits?per_page=1 head_cslam_experiments
@@ -50,7 +60,7 @@ RUN cd Swarm-SLAM &&\
 
 # Install Zenoh in one of the following ways
 ## From deb packages
-# RUN echo "deb [trusted=yes] https://download.eclipse.org/zenoh/debian-repo/ /" | tee -a /etc/apt/sources.list > /dev/null
-# RUN apt-get update && apt-get install zenoh-bridge-ros2dds
+RUN echo "deb [trusted=yes] https://download.eclipse.org/zenoh/debian-repo/ /" | tee -a /etc/apt/sources.list > /dev/null
+RUN apt-get update && apt-get install zenoh-bridge-ros2dds
 ## Directly from binary file
 # COPY zenoh-bridge-ros2dds /usr/bin/zenoh-bridge-ros2dds
