@@ -134,7 +134,7 @@ def generate_launch_description():
         DeclareLaunchArgument('database_path',  default_value='~/.ros/rtabmap.db',  description='Where is the map saved/loaded.'),
         DeclareLaunchArgument('queue_size',     default_value='100',                 description=''),
         DeclareLaunchArgument('qos',            default_value='0',                  description='General QoS used for sensor input data: 0=system default, 1=Reliable, 2=Best Effort.'),
-        DeclareLaunchArgument('wait_for_transform', default_value='0',            description=''),
+        DeclareLaunchArgument('wait_for_transform', default_value='0.0',            description=''),
         DeclareLaunchArgument('rtabmap_args',   default_value='',                   description='Backward compatibility, use "args" instead.'),
         DeclareLaunchArgument('launch_prefix',  default_value='',                   description='For debugging purpose, it fills prefix tag of the nodes, e.g., "xterm -e gdb -ex run --args"'),
         DeclareLaunchArgument('output',         default_value='log',             description='Control node output (screen or log).'),
